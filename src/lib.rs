@@ -7,7 +7,7 @@ pub trait BTreeVector<K> {
     fn key(&self) -> K;
 }
 
-/// Deserialises a Vec<V> into a BTreeMap<K, V>
+/// Deserialises a [`Vec<V>`] into a [`BTreeMap<K, V>`]
 pub fn deserialize_btree_vector<
     'de,
     D: Deserializer<'de>,
@@ -27,7 +27,7 @@ pub fn deserialize_btree_vector<
     Ok(ret)
 }
 
-/// Serialises a BTreeMap into a Vector
+/// Serialises a [`BTreeMap<K, V>`] as a sequence of its values.
 pub fn serialise_btreemap<S: Serializer, K, V: Serialize>(
     map: &BTreeMap<K, V>,
     serializer: S,
@@ -35,7 +35,7 @@ pub fn serialise_btreemap<S: Serializer, K, V: Serialize>(
     serializer.collect_seq(map.values())
 }
 
-/// Serialises a BTreeMap into a stable-sorted Vector
+/// Serialises a [`BTreeMap<K, V>`] into a stable-sorted sequence of its values.
 pub fn serialise_btreemap_and_sort<S: Serializer, K, V: Serialize + Ord>(
     map: &BTreeMap<K, V>,
     serializer: S,
